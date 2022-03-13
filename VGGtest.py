@@ -1,6 +1,13 @@
 import torch
 from torch import nn
 from d2l import torch as d2l
+from timeTool import  timeTool as tt
+import matplotlib.pyplot as plt
+
+a = tt()
+a.start()
+
+
 
 def vgg_block(num_convs, in_channels, out_channels):
     layers = []
@@ -42,8 +49,4 @@ train_iter, test_iter = d2l.load_data_fashion_mnist(batch_size, resize=224)
 d2l.train_ch6(net, train_iter, test_iter, num_epochs, lr, d2l.try_gpu())
 plt.show()
 
-
-
-
-
-net = vgg(conv_arch)
+a.end()

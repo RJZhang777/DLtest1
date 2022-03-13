@@ -2,6 +2,12 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 from d2l import torch as d2l
+import matplotlib.pyplot as plt
+from  timeTool import  timeTool as tt
+
+t = tt()
+t.start()
+
 
 
 class Residual(nn.Module): #@save
@@ -53,3 +59,6 @@ net = nn.Sequential(b1, b2, b3, b4, b5,
 lr, num_epochs, batch_size = 0.05, 10, 256
 train_iter, test_iter = d2l.load_data_fashion_mnist(batch_size, resize=96)
 d2l.train_ch6(net, train_iter, test_iter, num_epochs, lr, d2l.try_gpu())
+t.end()
+
+plt.show()

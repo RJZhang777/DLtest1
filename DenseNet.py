@@ -2,6 +2,13 @@ import matplotlib.pyplot as plt
 import torch
 from torch import nn
 from d2l import torch as d2l
+
+from timeTool import  timeTool as tt
+
+t = tt()
+t.start()
+
+
 def conv_block(input_channels, num_channels):
     return nn.Sequential(
     nn.BatchNorm2d(input_channels), nn.ReLU(),
@@ -54,7 +61,7 @@ train_iter, test_iter = d2l.load_data_fashion_mnist(batch_size, resize=96)
 d2l.train_ch6(net, train_iter, test_iter, num_epochs, lr, d2l.try_gpu())
 
 
-
+t.end()
 
 plt.show()
 

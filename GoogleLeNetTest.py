@@ -4,6 +4,9 @@ from torch import nn
 from torch.nn import functional as F
 from d2l import torch as d2l
 
+from timeTool import  timeTool as tt
+a = tt()
+a.start()
 class Inception(nn.Module):
     # c1--c4是每条路径的输出通道数
     def __init__(self, in_channels, c1, c2, c3, c4, **kwargs):
@@ -57,14 +60,14 @@ b5 = nn.Sequential(Inception(832, 256, (160, 320), (32, 128), 128),
 net = nn.Sequential(b1, b2, b3, b4, b5, nn.Linear(1024, 10))
 
 X = torch.rand(size=(1, 1, 96, 96))
-    for layer in net:
+for layer in net:
     X = layer(X)
     print(layer.__class__.__name__,'output shape:\t', X.shape)
 
 lr, num_epochs, batch_size = 0.1, 10, 128
 train_iter, test_iter = d2l.load_data_fashion_mnist(batch_size, resize=96)
 d2l.train_ch6(net, train_iter, test_iter, num_epochs, lr, d2l.try_gpu())
-
+a.end()
 plt.show()
 
 
